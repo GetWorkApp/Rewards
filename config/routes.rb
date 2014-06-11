@@ -1,7 +1,13 @@
 Rewards::Application.routes.draw do
   devise_for :users
-  resources :static_pages
   
+  devise_scope :users do
+    get 'register', to: 'devise/registrations#new', as: :register
+    get 'login', to: 'devise/sessions#new', as: :login
+    get 'logout', to: 'devise/sessions#destroy', as: :logout
+  end
+  
+  resources :static_pages 
   root 'static_pages#home'
     
   # The priority is based upon order of creation: first created -> highest priority.
