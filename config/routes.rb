@@ -1,11 +1,5 @@
 Rewards::Application.routes.draw do
-  devise_for :users
-  
-  devise_scope :users do
-    get 'register', to: 'devise/registrations#new', as: :register
-    get 'login', to: 'devise/sessions#new', as: :login
-    get 'logout', to: 'devise/sessions#destroy', as: :logout
-  end
+  devise_for :user, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
   
   resources :static_pages 
   root 'static_pages#home'
